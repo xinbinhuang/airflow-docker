@@ -36,7 +36,6 @@ RUN set -ex \
         python3-dev \
         mysql-client \
         mysql-server \
-        postgresql \
         curl \
         default-libmysqlclient-dev \
         vim-tiny 
