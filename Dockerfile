@@ -50,6 +50,6 @@ EXPOSE 8080
 
 USER airflow
 WORKDIR ${AIRFLOW_HOME}}
-CMD ["webserver"]
+CMD '/bin/bash'
 
 
