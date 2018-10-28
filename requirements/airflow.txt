@@ -1,0 +1,12 @@
+# This file contains the dependencies needed to install airflow
+
+pytz
+cryptography
+requests
+pyOpenSSL
+ndg-httpsclient
+pyasn1
+psycopg2
+celery>=4.0.0
+kubernetes
+Flask-WTF
