@@ -10,5 +10,5 @@ web:
 	docker run -d -p 8080:8080 $(IMAGE) webserver
 
 .PHONY: rm
-stop:	
+rm:	
 	docker rm $(docker ps -aq)
