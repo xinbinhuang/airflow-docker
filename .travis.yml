@@ -20,7 +20,7 @@ install:
   - docker build -t airflow-docker .
   
 script:
-  - docker run airflow-docker version | grep `1.10.1`
+  - docker run airflow-docker version | grep `1.10.0`
 
 before_deploy:
   - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWD"
