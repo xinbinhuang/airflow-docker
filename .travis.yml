@@ -1,10 +1,29 @@
 language: python
 python: 
   - "3.7"
+
+env:
+  global:
+    - IMAGE_NAME=airflow-docker  
+
 branches:
   only:
     - master
 services:
   - docker
-before_install:
+
+install:
+  - docker build -t airflow-docker .
   
+script:
+  - docker run airflow-docker version | grep `1.10.1`
+
+before_deploy:
+  - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWD"
+  - docker tag "$IMAGE_NAME" "$DOCKER_USER/${IMAGE_NAME}:latest"
+
+deploy:
+  provider: script
+  script: docker push "$DOCKER_USER/${IMAGE_NAME}:latest"
+  on:
+    branch: master
