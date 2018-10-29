@@ -6,7 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Airflow
 ARG AIRFLOW_VERSION=1.10.0
-ENV AIRFLOW_HOME /airflow
+ENV AIRFLOW_HOME /usr/local/airflow
 ENV AIRFLOW_DAGS ${AIRFLOW_HOME}/dags
 ENV AIRFLOW_GPL_UNIDECODE yes
 # Extra packages to install: https://airflow.apache.org/installation.html
@@ -56,10 +56,14 @@ RUN set -ex \
 RUN useradd -ms /bin/bash -d ${AIRFLOW_HOME} airflow
 RUN chown -R airflow: ${AIRFLOW_HOME}
 
+COPY script/entrypoint.sh ${AIRFLOW_HOME}/entrypoint.sh
+COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
+
 EXPOSE 8080 8793
 
 USER airflow
 WORKDIR ${AIRFLOW_HOME}
-CMD '/bin/bash'
+ENTRYPOINT [ "./entrypoint.sh" ]
+CMD ["webserver"]
 
 
