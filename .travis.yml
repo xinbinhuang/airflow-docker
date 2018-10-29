@@ -22,7 +22,7 @@ install:
   - docker build -t ${IMAGE_NAME} .
   
 script:
-  - docker run ${IMAGE_NAME} version | grep "1.10.1"
+  - docker run ${IMAGE_NAME} version | grep "1.10.0"
 
 before_deploy:
   - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWD"
