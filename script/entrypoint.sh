@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# Generate Fernet key
+if [ -z $FERNET_KEY ]; then
+    FERNET_KEY=$(python3 -c "from cryptography.fernet import Fernet; FERNET_KEY = Fernet.generate_key().decode(); print(FERNET_KEY)")
+fi
+
+sed -i "s/{{ FERNET_KEY }}/${FERNET_KEY}/" ${AIRFLOW_HOME}/airflow.cfg
+
 case "$1" in
   webserver)
     echo "Initializing database..."
