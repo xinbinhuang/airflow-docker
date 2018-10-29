@@ -7,8 +7,20 @@ build:
 
 .PHONY: web
 web: 
-	docker run -d -p 8080:8080 $(IMAGE) webserver
+	docker run -d --name=web -p 8080:8080 $(IMAGE) webserver
+	echo "'web' is running..."
+
+.PHONY: scheduler
+scheduler:
+	docker exec -d web airflow scheduler
+
+CONT-LS = $(shell docker ps -aq)
 
 .PHONY: rm
 rm:	
-	docker rm $(docker ps -aq)
+	docker rm $(CONT-LS)
+
+.PHONY: stop
+stop: 
+	docker stop $(CONT-LS)
+
