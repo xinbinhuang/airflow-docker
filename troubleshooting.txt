@@ -1,3 +1,8 @@
 ## Dockerfile
 - don't upgrade pip (i.e. `pip3 install -U pip`) 
     - [Conflict: system installed pip vs user installed](https://github.com/pypa/pip/issues/5599)
+
+- user config
+    - `useradd` : create new user
+    - `chown` : change file ownership to the new user
+    - `chmod` : give execution permission (sudo) to the file
