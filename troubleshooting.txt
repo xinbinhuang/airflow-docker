@@ -6,3 +6,9 @@
     - `useradd` : create new user
     - `chown` : change file ownership to the new user
     - `chmod` : give execution permission (sudo) to the file
+
+- automatically generated fernet key
+    - `sed -i "s/<pattern>/<replace>/" file`  : replace the pattern with <replace> in a file
+
+- check string empty
+    - `if [ -z $<var> ]; then <expression>; fi` : if $<var> is empty string, then do <expression>
