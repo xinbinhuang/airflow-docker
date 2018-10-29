@@ -1,3 +1,9 @@
+# VERSION 0.9.0.0
+# AUTHOR: Xinbin Huang
+# DESCRIPTION: A simple Docker image to run Airflow
+# BUILD: docker build --rm -t xinbinhuang/airflow-docker .
+# SOURCE: https://github.com/xinbinhuang/airflow-docker
+
 FROM ubuntu:18.04
 LABEL maintainer="Xinbin Huang"
 
@@ -53,17 +59,17 @@ RUN set -ex \
         /usr/share/doc \
         /usr/share/doc-base 
 
-RUN useradd -ms /bin/bash -d ${AIRFLOW_HOME} airflow
-RUN chown -R airflow: ${AIRFLOW_HOME}
-
 COPY script/entrypoint.sh ${AIRFLOW_HOME}/entrypoint.sh
 COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
+COPY dags/ ${AIRFLOW_DAGS}
+
+RUN useradd -ms /bin/bash -d ${AIRFLOW_HOME} airflow
+RUN chown -R airflow: ${AIRFLOW_HOME} \
+    &&  chmod +x ${AIRFLOW_HOME}/entrypoint.sh
 
 EXPOSE 8080 8793
 
 USER airflow
 WORKDIR ${AIRFLOW_HOME}
-ENTRYPOINT [ "./entrypoint.sh" ]
-CMD ["webserver"]
-
+ENTRYPOINT ["./entrypoint.sh"]
 
