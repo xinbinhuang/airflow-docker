@@ -5,6 +5,10 @@ IMAGE ?= xinbinhuang/airflow-docker
 build: 
 	docker build -t $(IMAGE) . 
 
+.PHONY: bash
+bash:
+	docker run -it --rm -p 8080:8080 $(IMAGE) 
+
 .PHONY: web
 web: 
 	docker run -d --name=web -p 8080:8080 $(IMAGE) webserver

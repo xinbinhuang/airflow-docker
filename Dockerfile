@@ -72,4 +72,5 @@ EXPOSE 8080 8793
 USER airflow
 WORKDIR ${AIRFLOW_HOME}
 ENTRYPOINT ["./entrypoint.sh"]
+CMD ["bash"]
 
