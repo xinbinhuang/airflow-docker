@@ -1,0 +1,21 @@
+version: '3'
+services:
+
+  web:
+    image: xhuang09/airflow-docker:latest
+    ports: 
+      - "8080:8080"
+    depends_on:
+      postgres
+    command: webserver
+
+  postgres:
+    image: postgres:11.0
+    env_file:
+      - ./config/postgres.env
+
+  scheduler:
+    image: xhuang09/airflow-docker:latest
+    command: scheduler
+    
+
