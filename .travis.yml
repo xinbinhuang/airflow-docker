@@ -25,7 +25,7 @@ script:
   - docker run ${IMAGE_NAME} version | grep "1.10.0"
 
 before_deploy:
-  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWD
+  - docker login -u $DOCKER_USER -p $DOCKER_PASSWD
 
 deploy:
   provider: script
