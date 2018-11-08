@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 if [ "$TRAVIS_BRANCH" = "master" ]; then
     TAG="latest"
