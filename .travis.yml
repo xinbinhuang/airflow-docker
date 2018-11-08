@@ -25,11 +25,9 @@ script:
   - docker run ${IMAGE_NAME} version | grep "1.10.0"
 
 before_deploy:
-  - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWD"
-  - docker tag "$IMAGE_NAME" "$DOCKER_USER/${IMAGE_NAME}:latest"
+  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWD
 
 deploy:
   provider: script
-  script: docker push "$DOCKER_USER/${IMAGE_NAME}:latest"
-  on:
-    branch: master
+  script: 
+    - deploy-docker.sh

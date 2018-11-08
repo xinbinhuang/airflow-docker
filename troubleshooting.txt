@@ -12,3 +12,6 @@
 
 - check string empty
     - `if [ -z $<var> ]; then <expression>; fi` : if $<var> is empty string, then do <expression>
+
+## docker compose
+- docker-compose creates a docker network for the services in the yaml, and each can access the other by their service name, which would be `web` and `postgres`.
