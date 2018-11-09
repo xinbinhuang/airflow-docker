@@ -43,6 +43,7 @@ RUN set -ex \
         mysql-client \
         mysql-server \
         curl \
+        netcat \
         default-libmysqlclient-dev \
         vim-tiny 
 
