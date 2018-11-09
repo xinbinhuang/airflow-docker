@@ -15,7 +15,7 @@ default_args = {
 }
 
 dag = DAG(
-    dag_id='anatomy_of_a_dag',
+    dag_id='a_toy_dag',
     description="This describes my DAG",
     default_args=default_args,
     schedule_interval=timedelta(minutes=1))   
