@@ -1,21 +1,29 @@
 version: '3'
 services:
 
+  postgres:
+    image: postgres:11.0
+    env_file:
+      - ./config/postgres.env
+  
   web:
     image: xhuang09/airflow-docker:latest
+    environment:
+      - EXECUTOR=Local
+    restart: always
     ports: 
       - "8080:8080"
     depends_on:
       - postgres
     command: webserver
 
-  postgres:
-    image: postgres:11.0
-    env_file:
-      - ./config/postgres.env
-
   scheduler:
     image: xhuang09/airflow-docker:latest
+    restart: always
+    depends_on:
+      - web
     command: scheduler
+    environment:
+      - EXECUTOR=Local
     
 
