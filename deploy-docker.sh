@@ -6,5 +6,5 @@ else
     TAG="$TRAVIS_BRANCH"
 fi
 
-docker tag docker tag "${IMAGE_NAME}" "${DOCKER_USER}/${IMAGE_NAME}:$TAG"
-docker push ${DOCKER_USER}/${IMAGE_NAME}
+docker tag "${IMAGE_NAME}" "${TRAVIS_REPO_SLUG}:$TAG"
+docker push "${TRAVIS_REPO_SLUG}:$TAG"
