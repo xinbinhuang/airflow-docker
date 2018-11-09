@@ -60,6 +60,7 @@ RUN set -ex \
         /usr/share/doc-base 
 
 COPY script/entrypoint.sh ${AIRFLOW_HOME}/entrypoint.sh
+COPY script/fernet_key.py ${AIRFLOW_HOME}/fernet_key.py
 COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
 COPY dags/ ${AIRFLOW_DAGS}
 
