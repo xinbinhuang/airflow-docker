@@ -8,6 +8,14 @@
     - `chmod` : give execution permission (sudo) to the file
 
 - automatically generated fernet key
+    ```bash
+    # Generate Fernet key - alternative; not used, format not concise.
+    if [ -z $FERNET_KEY ]; then
+        FERNET_KEY=$(python3 -c "from cryptography.fernet import Fernet; FERNET_KEY = Fernet.generate_key().decode(); print(FERNET_KEY)")
+    fi
+
+    sed -i "s/{{ FERNET_KEY }}/${FERNET_KEY}/" ${AIRFLOW_HOME}/airflow.cfg
+    ```
     - `sed -i "s/<pattern>/<replace>/" file`  : replace the pattern with <replace> in a file
 
 - check string empty
@@ -15,3 +23,14 @@
 
 ## docker compose
 - docker-compose creates a docker network for the services in the yaml, and each can access the other by their service name, which would be `web` and `postgres`.
+
+## wait for port()
+- `nc -z`: only listening to daemon, without sending data
+    - `nc -z host.example.com 8080`
+    - [Long explain](https://www.computerhope.com/unix/nc.htm)
+- [/dev/null](https://askubuntu.com/questions/350208/what-does-2-dev-null-mean)
+- [`< /dev/null`](https://stackoverflow.com/questions/19955260/what-is-dev-null-in-bash): avoid the script wait for input.
+- (`>&2`) redirect stdout to stderr 
+    - `echo >&2 "some error message"`
+
+
