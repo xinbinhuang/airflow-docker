@@ -7,7 +7,7 @@ services:
       - ./config/postgres.env
   
   web:
-    image: xhuang09/airflow-docker:latest
+    image: xinbinhuang/airflow-docker:1.00.0
     environment:
       - EXECUTOR=Local
     restart: always
@@ -18,7 +18,7 @@ services:
     command: webserver
 
   scheduler:
-    image: xhuang09/airflow-docker:latest
+    image: xinbinhuang/airflow-docker:1.00.0
     restart: always
     depends_on:
       - web
